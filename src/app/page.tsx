@@ -28,10 +28,7 @@ import {
 import { AnimatedSection } from "@/components/ui/sections";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
-import {
-  BeforeAndAfterParallaxItem,
-  GridParallaxItem,
-} from "@/components/ui/parallax-scroll-item";
+import { JobVisualCard } from "@/components/ui/JobVisualCard";
 import AnimatedHorizontalScroll from "@/components/ui/animated-horizontal-scroll";
 
 export default function Home() {
@@ -186,10 +183,44 @@ export default function Home() {
           </h1>
         </AnimatedWrapper>
 
-        <AnimatedHorizontalScroll />
+        <div className="w-full min-h-min p-4 rounded-xl bg-sky-500/20 dark:bg-white/50">
+          <AnimatedHorizontalScroll
+            items={[
+              <JobVisualCard
+                key={1}
+                title="Floor and Painting Job"
+                images={[
+                  {
+                    src: "/Job-1/FlooringandPaintingJob5.jpeg",
+                    description: "Before",
+                  },
+                  {
+                    src: "/Job-1/FlooringandPaintingJob9.jpeg",
+                    description: "After",
+                  },
+                  {
+                    src: "/Job-1/FlooringandPaintingJob4.jpeg",
+                    description: "Before",
+                  },
+                  {
+                    src: "/Job-1/FlooringandPaintingJob8.jpeg",
+                    description: "After",
+                  },
+                ]}
+              />,
+              <JobVisualCard
+                key={2}
+                title="Kitchen and Bathroom Remodeling Job"
+                images={[
+                  { src: "/Job-2/KitchenAndBathroomRemodelJob1.jpeg" },
+                  { src: "/Job-2/KitchenAndBathroomRemodelJob2.jpeg" },
+                  { src: "/Job-2/KitchenAndBathroomRemodelJob3.jpeg" },
+                ]}
+              />,
+            ]}
+          />
 
-        <div className="self-end border-l-2 rounded-xl bg-black/50 dark:bg-white/50 w-9/12">
-          <ParallaxScroll
+          {/* <ParallaxScroll
             parallaxItems={[
               <BeforeAndAfterParallaxItem
                 key={1}
@@ -224,7 +255,7 @@ export default function Home() {
                 ]}
               />,
             ]}
-          />
+          /> */}
         </div>
       </section>
 
