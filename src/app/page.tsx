@@ -97,9 +97,10 @@ export default function Home() {
 
   return (
     <div className="flex-1 w-screen">
-      {/* About Section with a background image */}
+      {/* Hero Section with a background image */}
       <section
-        className="mx-auto my-9 px-14 pt-10 pb-20 gap-56 grid justify-items-center relative"
+        id="HeroSection"
+        className="mx-auto px-14 pt-6 pb-60 gap-28 grid justify-items-center relative"
         style={{
           backgroundImage: "url('/HeroSectionBackground.webp')", // Specify the path to your image
           backgroundSize: "cover",
@@ -114,7 +115,7 @@ export default function Home() {
 
         <AnimatedWrapper
           direction="left"
-          delay={0.25}
+          delay={0.1}
           offset={100}
           animationDuration={1}
         >
@@ -158,7 +159,10 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="flex mx-auto mx-30 my-9 px-14 py-20">
+      <section
+        id="ServicesSection"
+        className="flex mx-auto mx-30 my-9 px-14 py-20"
+      >
         <div className="flex-1 w-full relative items-center justify-center">
           <div>
             <TypewriterEffectSmooth words={serviceSectionTitle} />
@@ -167,11 +171,13 @@ export default function Home() {
             <ServiceTabs />
           </div>
         </div>
-        {/* Add content for the Services section here */}
       </section>
 
       {/* Portfolio Section with a solid background color */}
-      <section className="flex flex-col mx-auto my-9 px-14 py-20 gap-8 bg-gradient-to-br from-neutral-100 to-neutral-200/20 dark:from-neutral-700 dark:to-neutral-900/20">
+      <section
+        id="PortfolioSection"
+        className="flex flex-col mx-auto my-9 px-14 py-20 gap-8 bg-gradient-to-br from-neutral-100 to-neutral-200/20 dark:from-neutral-700 dark:to-neutral-900/20"
+      >
         <AnimatedWrapper
           direction="left"
           delay={0.25}
@@ -305,6 +311,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <section
+        id="ContactSection"
         className="mx-auto my-9 px-14 py-20 grid justify-items-center relative"
         style={{
           backgroundImage: "url('/EmailFormSectionBackground.avif')", // Specify the path to your image
@@ -321,11 +328,10 @@ export default function Home() {
         <div className="z-10 w-9/12">
           <EmailForm />
         </div>
-        {/* Add content for the Portfolio section here */}
       </section>
 
       {/* Comment Section */}
-      <section className="flex mx-auto my-9 px-14 py-20">
+      <section id="CommentSection" className="flex mx-auto my-9 px-14 py-20">
         <div className="flex-1 w-full relative items-center justify-center">
           <div>
             <TypewriterEffect words={commentsSectionTitle} />
@@ -336,11 +342,13 @@ export default function Home() {
             <CommentSection />
           </div>
         </div>
-        {/* Add content for the Services section here */}
       </section>
 
       {/* FAQ Section */}
-      <section className="mx-auto my-9 px-14 py-20 bg-neutral-100 dark:bg-neutral-600 rounded-t-3xl border-2 hover:border-slate-400">
+      <section
+        id="FaqSection"
+        className="mx-auto my-9 px-14 py-20 bg-neutral-100 dark:bg-neutral-600 rounded-t-3xl border-2 hover:border-slate-400"
+      >
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
           FAQ
         </p>
@@ -392,8 +400,6 @@ export default function Home() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-
-        {/* Add content for the Portfolio section here */}
       </section>
     </div>
   );

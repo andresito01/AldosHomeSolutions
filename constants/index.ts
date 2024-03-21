@@ -10,12 +10,19 @@ import {
 
 // NAVIGATION
 export const NAV_LINKS = [
-  { href: "/", key: "home", label: "Home" },
-  { href: "/", key: "portfolio", label: "Portfolio" },
-  { href: "/", key: "services", label: "Services" },
-  { href: "/", key: "pricing", label: "Pricing" },
-  { href: "/", key: "contact", label: "Contact" },
+  { id: "HeroSection", label: "Home" },
+  { id: "ServicesSection", label: "Services" },
+  { id: "PortfolioSection", label: "Portfolio" },
+  { id: "ContactSection", label: "Contact" },
+  // Add more sections as needed
 ];
+// export const NAV_LINKS = [
+//   { href: "/", key: "home", label: "Home" },
+//   { href: "/", key: "portfolio", label: "Portfolio" },
+//   { href: "/", key: "services", label: "Services" },
+//   { href: "/", key: "pricing", label: "Pricing" },
+//   { href: "/", key: "contact", label: "Contact" },
+// ];
 
 export const SERVICES = [
   {

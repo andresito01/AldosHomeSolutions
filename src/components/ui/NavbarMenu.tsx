@@ -4,43 +4,19 @@ import Image from "next/image";
 import { ModeToggle } from "./ModeToggle";
 import { FaBars } from "react-icons/fa"; // Importing the menu icon
 import { IoIosClose } from "react-icons/io"; // Importing close menu icon
-import Link from "next/link";
 import { useAnimate, stagger, motion } from "framer-motion";
 import { NAV_LINKS } from "../../../constants";
 
-interface MenuProps {
-  isOpen: boolean;
+interface NavLink {
+  id: string;
+  label: string;
 }
 
-export const Menu: React.FC<MenuProps> = ({ isOpen }) => {
-  return isOpen ? (
-    <nav>
-      <ul>
-        {NAV_LINKS.map(({ href, label, key }) => (
-          <li key={key}>
-            <Link
-              href={href}
-              className="lg:text-xl md:text-4sm text-black dark:text-white hover:opacity-90 hover:bg-amber-600/50 p-6 flex flex-1 justify-start relative block"
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  ) : (
-    <nav className="relative items-center">
-      {NAV_LINKS.map(({ href, label, key }) => (
-        <Link
-          key={key}
-          href={href}
-          className="lg:text-xl md:text-4sm text-black dark:text-white hover:opacity-90 hover:bg-amber-600/50 p-2"
-        >
-          {label}
-        </Link>
-      ))}
-    </nav>
-  );
+const scrollToSection = (sectionId: string): void => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 };
 
 function useMenuAnimation(isMobileView: boolean, isOpen: boolean) {
@@ -133,7 +109,7 @@ export function Navbar({ className }: { className?: string }) {
 
   return (
     <div
-      className={`flex w-9/12 items-center justify-between ${className}`}
+      className={`flex w-full items-center justify-between dark:bg-black bg-white ${className}`}
       ref={scope}
     >
       <div className="h-full flex items-center pl-4 pr-8">
@@ -142,7 +118,7 @@ export function Navbar({ className }: { className?: string }) {
             src={"/CompanyLogo.png"}
             alt="HomeLogo"
             height={0}
-            width={400}
+            width={200}
           />
         </div>
       </div>
@@ -170,7 +146,7 @@ export function Navbar({ className }: { className?: string }) {
         <motion.div
           className={`md:flex ${
             isOpen
-              ? "absolute z-30 top-0 bottom-0 right-0 flex flex-col w-6/12 bg-gradient-to-r from-amber-500 to-yellow-500"
+              ? "fixed z-30 top-0 bottom-0 right-0 flex flex-col w-1/3 bg-gradient-to-r from-amber-300 to-amber-600"
               : "h-0 w-0"
           }`}
           animate={{ x: isOpen ? 0 : 200 }} // Animate in or out based on isOpen state
@@ -187,14 +163,14 @@ export function Navbar({ className }: { className?: string }) {
           {isOpen && (
             <nav>
               <ul>
-                {NAV_LINKS.map(({ href, label, key }) => (
-                  <li key={key}>
-                    <Link
-                      href={href}
+                {NAV_LINKS.map(({ id, label }: NavLink) => (
+                  <li key={id}>
+                    <button
+                      onClick={() => scrollToSection(id)}
                       className="lg:text-xl md:text-4sm text-black dark:text-white hover:opacity-90 hover:bg-amber-600/50 p-6 flex flex-1 justify-start relative block"
                     >
                       {label}
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -203,14 +179,14 @@ export function Navbar({ className }: { className?: string }) {
         </motion.div>
       ) : (
         <nav className="absolute top-32 left-1/3 pl-24 space-x-4">
-          {NAV_LINKS.map(({ href, label, key }) => (
-            <Link
-              key={key}
-              href={href}
+          {NAV_LINKS.map(({ id, label }: NavLink) => (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
               className="lg:text-xl md:text-md text-black dark:text-white hover:opacity-90 hover:bg-neutral-200/50 dark:hover:bg-stone-300/50 px py-4"
             >
               {label}
-            </Link>
+            </button>
           ))}
         </nav>
       )}
@@ -222,14 +198,3 @@ export function Navbar({ className }: { className?: string }) {
     </div>
   );
 }
-
-const NavLink = ({ href, label }: { href: string; label: string }) => {
-  return (
-    <Link
-      href={href}
-      className="lg:text-xl md:text-4sm text-black dark:text-white hover:opacity-90 hover:bg-amber-600/50 p-2"
-    >
-      {label}
-    </Link>
-  );
-};
